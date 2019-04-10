@@ -1,13 +1,24 @@
 #include <string>
-class Copy
+using namespace std;
+class FsOperations
 {
 public:
-  void readArgs(int argNum, char **argVal);
+  // default constructor
+  FsOperations();
+  FsOperations(string op, string pathFrom, string pathTo);
+  // copy constructor
+  FsOperations(const FsOperations &c);
+  // destructor
+  ~FsOperations();
   void copy();
   void catchError(const std::exception &e);
   void drawHelp();
+  void whatToDo(string op);
+  void rename();
+  void remove();
 
 private:
-  int x;
-  std::string b;
+  string operation;
+  string pathFr;
+  string pathDest;
 };
