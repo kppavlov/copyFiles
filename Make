@@ -1,0 +1,7 @@
+CC=g++
+
+FLAGS=-Wall
+LIB=-lstdc++fs
+
+all:
+	$(CC) $(FLAGS) main.cpp fsOperations.cpp -o copyExe $(LIB)
