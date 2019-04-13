@@ -1,7 +1,17 @@
 CC=g++
 
 FLAGS=-Wall
+DEBUG=-g
 LIB=-lstdc++fs
 
-all:
-	$(CC) $(FLAGS) main.cpp fsOperations.cpp -o copyExe $(LIB)
+all: main.o operations.o
+	$(CC) $(FLAGS) main.cpp fsOperations.cpp -o runOperations $(LIB)
+
+debug: main.o operations.o
+	$(CC) $(FLAGS) $(DEBUG) main.cpp fsOperations.cpp -o runOperations $(LIB)
+
+main.o:
+	$(CC) -c main.cpp
+
+operations.o:
+	$(CC) -c fsOperations.cpp
