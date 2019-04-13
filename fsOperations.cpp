@@ -5,90 +5,42 @@
 namespace fs = std::experimental::filesystem;
 using namespace std;
 
-string operation;
-string pathFr;
-string pathDest;
-
 // Default constructor
-FsOperations::FsOperations()
+Copy::Copy()
 {
-    operation = "-c";
     pathFr = "/home";
     pathDest = "/home";
 }
 
-FsOperations::FsOperations(string op, string pathFrom, string pathTo)
+Copy::Copy(char *pathFrom, char *pathTo)
 {
-    operation = op;
-    pathFr = pathFrom;
-    pathDest = pathTo;
+    string path1(pathFrom);
+    string path2(pathTo);
+
+    pathFr = path1;
+    pathDest = path2;
 }
 
 // copy constructor
-FsOperations::FsOperations(const FsOperations &c)
+Copy::Copy(const Copy &c)
 {
     std::cout << "copy const\n";
 };
 
 // destructor
-FsOperations::~FsOperations()
+Copy::~Copy()
 {
-    std::cout << "free some memory\n";
+    std::cout << "Copy free some memory\n";
 };
 
-void FsOperations::catchError(const std::exception &e)
+void Copy::catchError(const std::exception &e)
 {
     std::cout << "----------------------------------\n";
     std::cerr << "ERROR: " << e.what() << "\n";
     std::cout << "----------------------------------\n";
-    drawHelp();
 }
 
-void FsOperations::drawHelp()
-{
-    std::cout << "Usage\n";
-    std::cout << "-operation[-c, -rn, -rm] -input_path[-i /path/do/modify..] -output_path[-o /path/to/paste] \n";
-    std::cout << "Help\n";
-    std::cout << "-c Copy files/directories\n";
-    std::cout << "-rn Rename files/directories\n";
-    std::cout << "-rm Remove files/directories\n";
-    std::cout << "-i path to file or directory to copy\n";
-    std::cout << "-o path to directory to paste\n";
-    std::cout << "-h || --help to print this help\n";
-}
-
-void FsOperations::whatToDo(string op)
-{
-
-    if (op == "-c")
-    {
-        FsOperations::copy();
-    }
-    else if (op == "-rn")
-    {
-        FsOperations::rename();
-    }
-    else if (op == "-rm")
-    {
-        FsOperations::remove();
-    }
-    else
-    {
-        FsOperations::drawHelp();
-    }
-}
-
-void FsOperations::rename()
-{
-    fs::rename(pathFr, pathDest);
-}
-
-void FsOperations::remove()
-{
-    fs::remove(pathFr);
-}
-
-void FsOperations::copy()
+void Copy::copy()
 {
     try
     {
@@ -96,6 +48,71 @@ void FsOperations::copy()
     }
     catch (const std::exception &e)
     {
-        FsOperations::catchError(e);
+        std::cerr << e.what() << '\n';
+        exit(EXIT_FAILURE);
+    }
+}
+
+// Copy END
+
+Rename::Rename(char *pathToFile, char *newPathToFile)
+{
+    string path1(pathToFile);
+    string path2(newPathToFile);
+    oldPath = path1;
+    newPath = path2;
+}
+
+Rename::Rename()
+{
+    oldPath = "/home";
+    newPath = "/home";
+}
+
+Rename::~Rename()
+{
+    cout << "Rename free up some memory\n";
+}
+
+void Rename::rename()
+{
+    try
+    {
+        fs::rename(oldPath, newPath);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+        exit(EXIT_FAILURE);
+    }
+}
+
+// Rename END
+
+Remove::Remove()
+{
+    path = "";
+}
+
+Remove::Remove(char *pathToFile)
+{
+    string path1(pathToFile);
+    path = path1;
+}
+Remove::~Remove()
+{
+    cout << "Remove free up memory\n";
+};
+
+void Remove::remove()
+{
+    try
+    {
+        fs::remove(path);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+        exit(EXIT_FAILURE);
     }
 }

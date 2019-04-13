@@ -1,24 +1,49 @@
 #include <string>
+
 using namespace std;
-class FsOperations
+
+class Copy
 {
 public:
   // default constructor
-  FsOperations();
-  FsOperations(string op, string pathFrom, string pathTo);
+  Copy();
+  Copy(char *pathFrom, char *pathTo);
   // copy constructor
-  FsOperations(const FsOperations &c);
+  Copy(const Copy &c);
   // destructor
-  ~FsOperations();
+  ~Copy();
   void copy();
   void catchError(const std::exception &e);
-  void drawHelp();
-  void whatToDo(string op);
+
+private:
+  string pathFr;
+  string pathDest;
+};
+
+class Rename
+{
+
+public:
+  Rename();
+  Rename(char *pathToFile, char *newPath);
+  ~Rename();
+
   void rename();
+
+private:
+  string oldPath;
+  string newPath;
+};
+
+class Remove
+{
+public:
+  Remove();
+  Remove(char *pathToFile);
+  ~Remove();
+
   void remove();
 
 private:
-  string operation;
-  string pathFr;
-  string pathDest;
+  string path;
 };
