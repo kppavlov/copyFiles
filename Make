@@ -4,14 +4,20 @@ FLAGS=-Wall
 DEBUG=-g
 LIB=-lstdc++fs
 
-all: main.o operations.o
-	$(CC) $(FLAGS) main.cpp fsOperations.cpp -o runOperations $(LIB)
+all: main.o copy.o remove.o rename.o
+	$(CC) $(FLAGS) main.cpp Copy.cpp Remove.cpp Rename.cpp -o runOperations $(LIB)
 
-debug: main.o operations.o
-	$(CC) $(FLAGS) $(DEBUG) main.cpp fsOperations.cpp -o runOperations $(LIB)
+debug: main.o copy.o
+	$(CC) $(FLAGS) $(DEBUG) main.cpp Copy.cpp -o runOperations $(LIB)
 
 main.o:
 	$(CC) -c main.cpp
 
-operations.o:
-	$(CC) -c fsOperations.cpp
+copy.o:
+	$(CC) -c Copy.cpp
+
+remove.o:
+	$(CC) -c Remove.cpp
+
+rename.o:
+	$(CC) -c Rename.cpp

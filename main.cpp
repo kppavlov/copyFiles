@@ -22,7 +22,6 @@ int main(int argc, char **arg)
 {
     if (argc == 1 || argc <= 3 || argc == 5 || argc > 6)
     {
-        cout << "pyrvi if\n";
         printUsage();
     }
 
@@ -31,7 +30,6 @@ int main(int argc, char **arg)
     if (arg1 == "-h" || arg1 == "--help" ||
         arg2 != "-i")
     {
-        cout << "vtori if\n";
         printUsage();
     }
 
@@ -41,7 +39,7 @@ int main(int argc, char **arg)
         {
             printUsage();
         }
-
+        // char *&arg31 = arg[3];
         Remove remove(arg[3]);
         remove.remove();
     }
