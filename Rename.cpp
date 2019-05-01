@@ -1,23 +1,13 @@
-#include "fsOperations.hpp"
+#include "Rename.h"
 #include <iostream>
 #include <experimental/filesystem>
 using namespace std;
 namespace fs = std::experimental::filesystem;
 
-// Rename::Rename(char *pathToFile, char *newPathToFile)
-// {
-//     string path1(pathToFile);hiy
-//     string path2(newPathToFile);
-//     oldPath = path1;
-//     newPath = path2;
-// }
-
-Rename::Rename(char *&pathToFile, char *&newPathToFile)
+Rename::Rename(string pathToFile, string newPathToFile)
 {
-    string path1(pathToFile);
-    string path2(newPathToFile);
-    oldPath = path1;
-    newPath = path2;
+    oldPath = pathToFile;
+    newPath = newPathToFile;
 }
 
 Rename::Rename()
@@ -31,7 +21,7 @@ Rename::~Rename()
     cout << "Rename free up some memory\n";
 }
 
-void Rename::rename()
+void Rename::doOperation()
 {
     try
     {

@@ -1,4 +1,4 @@
-#include "fsOperations.hpp"
+#include "Remove.h"
 #include <iostream>
 #include <experimental/filesystem>
 using namespace std;
@@ -7,22 +7,19 @@ namespace fs = std::experimental::filesystem;
 Remove::Remove()
 {
     path = "";
-}
+};
 
-// Remove::Remove(char *pathToFile)
-// {
-//     path = pathToFile;
-// }
-Remove::Remove(char *&pathToFile)
+Remove::Remove(string pathToFile)
 {
     path = pathToFile;
-}
+};
+
 Remove::~Remove()
 {
     cout << "Remove free up memory\n";
 };
 
-void Remove::remove()
+void Remove::doOperation()
 {
     try
     {
@@ -33,4 +30,4 @@ void Remove::remove()
         std::cerr << e.what() << '\n';
         exit(EXIT_FAILURE);
     }
-}
+};

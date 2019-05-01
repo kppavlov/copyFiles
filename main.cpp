@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
-#include "fsOperations.hpp"
+#include "Copy.h"
+#include "Rename.h"
+#include "Remove.h"
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
 using namespace std;
@@ -33,28 +35,39 @@ int main(int argc, char **arg)
         printUsage();
     }
 
+    Operations *op;
+
     if (argc == 4)
     {
         if (arg1 != "-rm")
         {
             printUsage();
         }
-        // char *&arg31 = arg[3];
-        Remove remove(arg[3]);
-        remove.remove();
+
+        string const arg31(arg[3]);
+        Remove remove(arg31);
+        op = &remove;
+        op->doOperation();
     }
 
     if (argc == 6)
     {
         if (arg1 == "-rn")
         {
-            Rename rename(arg[3], arg[5]);
-            rename.rename();
+            string path1(arg[3]);
+            string path2(arg[5]);
+
+            Rename rename(path1, path2);
+            op = &rename;
+            op->doOperation();
         }
         else
         {
-            Copy cpy(arg[3], arg[5]);
-            cpy.copy();
+            string path1(arg[3]);
+            string path2(arg[5]);
+            Copy cpy(path1, path2);
+            op = &cpy;
+            op->doOperation();
         }
     }
 

@@ -1,4 +1,4 @@
-#include "fsOperations.hpp"
+#include "Copy.h"
 #include <iostream>
 #include <string>
 #include <experimental/filesystem>
@@ -11,24 +11,13 @@ Copy::Copy()
     pathFr = "/home";
     pathDest = "/home";
 }
-// passed by reference
-Copy::Copy(char *&pathFrom, char *&pathTo)
+
+//passed by value
+Copy::Copy(string pathFrom, string pathTo)
 {
-    string path1(pathFrom);
-    string path2(pathTo);
-
-    pathFr = path1;
-    pathDest = path2;
+    pathFr = pathFrom;
+    pathDest = pathTo;
 }
-// passed by value
-// Copy::Copy(char *pathFrom, char *pathTo)
-// {
-//     string path1(pathFrom);
-//     string path2(pathTo);
-
-//     pathFr = path1;
-//     pathDest = path2;
-// }
 
 // copy constructor
 Copy::Copy(const Copy &c)
@@ -42,14 +31,7 @@ Copy::~Copy()
     std::cout << "Copy free some memory\n";
 };
 
-void Copy::catchError(const std::exception &e)
-{
-    std::cout << "----------------------------------\n";
-    std::cerr << "ERROR: " << e.what() << "\n";
-    std::cout << "----------------------------------\n";
-}
-
-void Copy::copy()
+void Copy::doOperation()
 {
     try
     {
