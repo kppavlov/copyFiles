@@ -1,5 +1,6 @@
+#ifndef OPERATIONS_H
+#define OPERATIONS_H
 #include <string>
-
 using namespace std;
 
 class Operations
@@ -19,3 +20,4 @@ private:
   string pathTo;
   string operation;
 };
+#endif
