@@ -1,3 +1,5 @@
+#ifndef COPY_H
+#define COPY_H
 #include <string>
 #include "Operations.h"
 
@@ -19,3 +21,4 @@ private:
   string pathFr;
   string pathDest;
 };
+#endif

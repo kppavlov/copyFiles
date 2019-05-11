@@ -1,3 +1,5 @@
+#ifndef REMOVE_H
+#define REMOVE_H
 #include <iostream>
 #include <string>
 #include "Operations.h"
@@ -17,3 +19,4 @@ public:
 private:
   string path;
 };
+#endif

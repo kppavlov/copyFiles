@@ -1,3 +1,5 @@
+#ifndef RENAME_H
+#define RENAME_H
 #include <iostream>
 #include <string>
 #include "Operations.h"
@@ -18,3 +20,4 @@ private:
   string oldPath;
   string newPath;
 };
+#endif
